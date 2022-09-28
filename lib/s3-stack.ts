@@ -7,7 +7,6 @@ export class S3Stack extends cdk.Stack {
     super(scope, id, props);
 
     new s3.Bucket(this, 'MyFirstBucket', {
-      bucketName: 'my-first-bucket',
       publicReadAccess: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY
 
