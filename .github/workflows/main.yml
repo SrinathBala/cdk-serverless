@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: "14"
       - name: Configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@master
         with:
           role-to-assume: arn:aws:iam::128680359488:role/ExampleGithubRole
           aws-region: us-east-1
