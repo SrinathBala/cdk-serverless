@@ -1,25 +1,10 @@
-on: [push, workflow_dispatch]
-
+name: CI + CD
+on: [workflow_dispatch]
+  
 jobs:
-  aws_cdk:
-    permissions:
-      id-token: write
-      contents: read
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-      - name: Configure aws credentials
-        uses: aws-actions/configure-aws-credentials@master
-        with:
-          role-to-assume: arn:aws:iam::040303216334:role/ExampleGithubRole
-          aws-region: us-east-1
-      - name: Install dependencies
-        run: yarn
-      - name: Synth stack
-        run: yarn cdk synth
-      - name: Deploy stack
-        run: yarn cdk deploy --all --require-approval never
+  CICD:
+    uses: SrinathBala/central-workflows/.github/workflows/CICD.yml@main
+    with:
+      DISABLE_STAGE: false
+    secrets:
+      ROLE_TO_ASSUME: ${{ secrets.ROLE_TO_ASSUME }}
